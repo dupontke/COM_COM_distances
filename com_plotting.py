@@ -51,8 +51,8 @@ print "Number of data rows:", rows
 
 for i in range(nSel):
 	selection = sel[i][2]
-	scat_hist(time[:],datalist[:,i],'k','Time (ns)','COM','%02d.%s.%s' %(i,selection,system),'COM',yunits='$\AA$')
-	hist1d(datalist[:,i],'COM','%02d.%s.%s' %(i,selection,system),'COM',norm=True,xunits='$\AA$')
+	scat_hist(time[:],datalist[:,i],'k','Time (ns)','COM Distance','%02d.%s.%s' %(i,selection,system),'COM',yunits='$\AA$')
+	hist1d(datalist[:,i],'COM Distance','%02d.%s.%s' %(i,selection,system),'COM',norm=True,xunits='$\AA$')
 
 	
 	# Loop through each column and create a histogram and the probability density
