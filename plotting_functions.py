@@ -112,7 +112,7 @@ def hist1d(data, x_axis, system, analysis, num_b = 100, norm = True, average = F
 	"""
 	
 	# INITIATING THE PLOT...
-	events, edges, patches = plt.hist(data, bins=num_b, normed=norm, weights=None, density=None, histtype = 'bar')
+	events, edges, patches = plt.hist(data, bins=num_b, normed=norm, histtype = 'bar')
 	
 	# READING IN KWARG DICTIONARY INTO SPECIFIC VARIABLES
 	for name, value in kwargs.items():
@@ -229,7 +229,7 @@ def scat_hist(xdata, ydata, color, x_axis, y_axis, system, analysis, num_b = 100
 		plt.axhline(avg, xmin=0.0, xmax=1.0, c='r')
 		plt.figtext(0.775, 0.810, '%s\n%6.4f $\\pm$ %6.4f %s \nSD = %4.3f %s' %(analysis, avg, SDOM, y_units, SD, y_units), bbox=dict(boxstyle='square', ec='r', fc='w'), fontsize=12)
 	
-	plt.savefig('%s.%s.scat_hist.png' %(system, analysis))
+	plt.savefig('%s.%s.scat_hist.png' %(system,analysis))
 	plt.close()
 
 
