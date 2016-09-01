@@ -59,11 +59,17 @@ for i in range(nSel):
     ffprint('%s atoms found in %s' %(u_sel[i][0].n_atoms, u_sel[i][0].residues))
     ffprint('%s atoms found in %s' %(u_sel[i][1].n_atoms, u_sel[i][1].residues))
 
+hist_min = 0
+hist_max = 100
+bin_size = 0.1
+num_bins = int((hist_max-hist_min)/bin_size)
+dist_hist = np.zeros(num_bins,dtype=float)
 box = u.dimensions[:3]
 ffprint('the box dimensions are %s' %(box))
 
 out1 = open('%03d.%03d.com_distance.dat' %(int(sys.argv[3]),end),'w')
 
+count = 0
 nSteps = 0
 while start <= end:
     ffprint('Loading trajectory %s' %(start))
@@ -77,14 +83,30 @@ while start <= end:
         for i in range(nSel):
             com0 = u_sel[i][0].center_of_mass()
             com1 = u_sel[i][1].center_of_mass()              
-            dist,dist2 = euclid_dist(com0,com1)
-            #dist = math.sqrt(computePbcDist2(com0,com1,box))
+            #dist,dist2 = euclid_dist(com0,com1)
+            dist = math.sqrt(computePbcDist2(com0,com1,box))
             out1.write('%10.6f    ' %(dist))
         out1.write('\n')
     start +=1
 
 out1.close()
 ffprint(nSteps)
+
+
+# print histogram data into separate file
+#with open('%03d.%03d.prob_density_hist.dat' %(int(sys.argv[3]),end),'r') as file:
+#    dat = np.loadtxt(file,dtype=np.float)
+
+#dist_bin = int((dist-hist_min)/bin_size)
+#if hist_min<dist<hist_max:
+#    dist_hist[dist_bin] += 1
+#    for j in range(num_bins):
+#        dist_hist[i] /= 4*math.pi*((i+0.5)*bin_size+hist_min)**2
+#out2 = open('%03d.%03d.prob_density_hist.dat' %(int(sys.argv[3]),end),'w')
+#    out2.write('%10.6f   %10.6f ' %(i*bin_size+hist_min,dist_hist[i]))
+#    out2.write('\n')
+#out2.close()
+
 
 
 
