@@ -31,7 +31,7 @@ square = np.square
 sqrt = np.sqrt
 flush = sys.stdout.flush
 
-important = 'protein'
+important = 'protein and resname GTP and resname SAH and resname MG'
 nSel = len(sel)
 
 # ----------------------------------------
